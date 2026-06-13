@@ -1,7 +1,7 @@
 from pytest_bdd import given, then, when, scenario
 from pages.actions.login_actions import LoginActions
 
-@scenario("../login.feature", "Log in into the page with a regular user")
+@scenario("login.feature", "Log in into the page with a regular user")
 def test_regular_login():
     pass
 
