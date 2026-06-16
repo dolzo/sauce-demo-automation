@@ -21,4 +21,4 @@ def step_login(driver) -> None:
 @then("the user is redirected to the main page with its account")
 def step_user_redirected_to_main_page(driver) -> None:
     login = LoginActions(driver)
-    login.user_is_logged()
+    assert login.user_is_logged()
