@@ -4,7 +4,7 @@ from pages.page_objects.standard_item_purchase import standardItemPurchase
 #TODO: Quitar esta importacion, ahora esta activa solo como guia para el intellisense
 from selenium.webdriver.chrome.webdriver import WebDriver
 
-class standardItemPurchaseActions(BaseActions):
+class StandardItemPurchaseActions(BaseActions):
     
     def __init__(self, driver):
         super().__init__(driver)
