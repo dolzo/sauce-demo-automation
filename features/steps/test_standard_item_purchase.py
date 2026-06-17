@@ -7,41 +7,40 @@ from pages.actions.login_actions import LoginActions
 
 @pytest.fixture
 def purchase_actions(driver):
-    return Standar
+    return StandardItemPurchaseActions(driver)
+
+@pytest.fixture
+def login_actions(driver):
+    return LoginActions(driver)
 
 @scenario("standard_item_purchase.feature", "Purchase an item with a regular user")
 def test_standard_item_purchase():
     pass
 
 @given("the user goes to the website")
-def step_open_website(driver) -> None:
-    item_purchase = StandardItemPurchaseActions(driver)
-    item_purchase.load("https://www.saucedemo.com/")
+def step_open_website(purchase_actions: StandardItemPurchaseActions) -> None:
+    purchase_actions.load("https://www.saucedemo.com/")
 
 @when("the user enters valid credentials for an standard user")
-def step_login(driver) -> None:
-    login = LoginActions(driver)
-    login.type_username("standard_user")
-    login.type_password("secret_sauce")
-    login.click_submit_button()
+def step_login(login_actions: LoginActions) -> None:
+    login_actions.type_username("standard_user")
+    login_actions.type_password("secret_sauce")
+    login_actions.click_submit_button()
 
 @when("the user adds an item to the cart")
-def step_add_item_to_cart(driver) -> None:
-    item_purchase = StandardItemPurchaseActions(driver)
-    item_purchase.click_backpack_add_to_cart_button()
-    item_purchase.click_cart_button()
-    item_purchase.click_checkout_button()
+def step_add_item_to_cart(purchase_actions: StandardItemPurchaseActions) -> None:
+    purchase_actions.click_backpack_add_to_cart_button()
+    purchase_actions.click_cart_button()
+    purchase_actions.click_checkout_button()
 
 @when("the user completes the checkout process")
-def step_complete_checkout(driver) -> None:
-    item_purchase = StandardItemPurchaseActions(driver)
-    item_purchase.type_first_name("Andrea")
-    item_purchase.type_last_name("Soto")
-    item_purchase.type_postal_code("1305000")
-    item_purchase.click_continue_to_checkout_overview()
-    item_purchase.click_finish_button()
+def step_complete_checkout(purchase_actions: StandardItemPurchaseActions) -> None:
+    purchase_actions.type_first_name("Andrea")
+    purchase_actions.type_last_name("Soto")
+    purchase_actions.type_postal_code("1305000")
+    purchase_actions.click_continue_to_checkout_overview()
+    purchase_actions.click_finish_button()
 
 @then("the user is shown a thank you message for its order")
-def step_check_message(driver) -> None:
-    item_purchase = StandardItemPurchaseActions(driver)
-    assert item_purchase.item_was_purchased(), "Error: no se mostró el div de orden completada"
+def step_check_message(purchase_actions: StandardItemPurchaseActions) -> None:
+    assert purchase_actions.item_was_purchased(), "Error: no se mostró el div de orden completada"
