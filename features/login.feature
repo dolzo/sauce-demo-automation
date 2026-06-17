@@ -1,4 +1,4 @@
-Feature: Standart Login
+Feature: standard Login
 
 @high
 Scenario: Log in into the page with a regular user

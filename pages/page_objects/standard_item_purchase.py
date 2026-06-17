@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
 
-class StandartItemPurchase:
+class standardItemPurchase:
     button_add_backpack_to_cart = (By.XPATH, "//button[@id='add-to-cart-sauce-labs-backpack']")
     button_shopping_cart = (By.XPATH, "//a[@class='shopping_cart_link']")
     button_checkout = (By.XPATH, "//button[@id='checkout']")
